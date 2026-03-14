@@ -1,0 +1,6 @@
+FROM alpine:3.18
+WORKDIR /app
+COPY . /app
+RUN echo "Hello from Docksmith"
+ENV NAME=Docksmith
+CMD ["python", "main.py"]
