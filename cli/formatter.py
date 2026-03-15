@@ -22,16 +22,14 @@ RESET  = "\033[0m"
 
 # ── Build output ──────────────────────────────────────────────────────────────
 
-def print_build_step(step_num: int, total_steps: int, instruction: str, cache_hit: bool):
-    """
-    Print a single build step line.
-
-    Example output:
-        Step 2/5 : COPY . /app  [CACHE HIT]
-        Step 3/5 : RUN echo hello  [CACHE MISS]
-    """
-    cache_label = f"{GREEN}[CACHE HIT]{RESET}" if cache_hit else f"{YELLOW}[CACHE MISS]{RESET}"
-    print(f"Step {step_num}/{total_steps} : {instruction}  {cache_label}")
+def print_build_step(step_num: int, total_steps: int, instruction: str, cache_hit: bool, duration=None):
+    if cache_hit is None:
+        # FROM, WORKDIR, ENV, CMD — no cache status
+        print(f"Step {step_num}/{total_steps} : {instruction}")
+    else:
+        cache_label = f"{GREEN}[CACHE HIT]{RESET}" if cache_hit else f"{YELLOW}[CACHE MISS]{RESET}"
+        dur = f" {duration}s" if duration is not None else ""
+        print(f"Step {step_num}/{total_steps} : {instruction}  {cache_label}{dur}")
 
 
 def print_build_success(image_digest: str):
