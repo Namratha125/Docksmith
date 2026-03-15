@@ -61,8 +61,9 @@ def cmd_build(tag: str, context: str, no_cache: bool):
             step_num=i,
             total_steps=total,
             instruction=step["instruction"],
-            cache_hit=step.get("cache_hit", False)
-        )
+            cache_hit=step.get("cache_hit"),   # None for FROM/WORKDIR/ENV/CMD
+            duration=step.get("duration"),
+)
 
     # Step 6: Print success
     formatter.print_build_success(result.get("image_digest", "unknown"))

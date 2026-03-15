@@ -23,47 +23,9 @@ HOW TO SWAP IN REAL CODE:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# MEMBER 2 — Build Engine
-# Replace with: from build_engine.builder import build_image
+# MEMBER 2 — Build Engine  ✅  INTEGRATED
 # ══════════════════════════════════════════════════════════════════════════════
-
-def build_image(tag: str, context_path: str, no_cache: bool = False):
-    """
-    Build an image from a Docksmithfile.
-
-    Parameters:
-        tag          — "myapp:latest"
-        context_path — path to the directory with the Docksmithfile (usually ".")
-        no_cache     — if True, ignore cache and rebuild everything
-
-    Returns:
-        A dict with build results:
-        {
-            "steps": [
-                {"instruction": "FROM alpine:3.18", "cache_hit": False},
-                {"instruction": "COPY . /app",      "cache_hit": True},
-                ...
-            ],
-            "image_digest": "sha256:a3f9b2c1d4e5..."
-        }
-
-    Raises:
-        FileNotFoundError — if no Docksmithfile found in context_path
-        ValueError        — if an unsupported instruction is used
-        RuntimeError      — if a RUN command fails
-    """
-    # ── STUB — DELETE THIS BLOCK WHEN MEMBER 2 IS READY ──────────────────────
-    print(f"  [STUB] Member 2 not integrated yet")
-    print(f"  [STUB] Would build '{tag}' from '{context_path}'")
-    return {
-        "steps": [
-            {"instruction": "FROM alpine:3.18", "cache_hit": False},
-            {"instruction": "COPY . /app",      "cache_hit": False},
-            {"instruction": "RUN echo hello",   "cache_hit": False},
-        ],
-        "image_digest": "sha256:stub000000000000000000000000000000000000000000000000000000000000000"
-    }
-    # ─────────────────────────────────────────────────────────────────────────
+from build_engine.builder import build_image   # noqa: F401  (re-exported for CLI)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
