@@ -1,0 +1,5 @@
+# Create .gitignore
+echo "__pycache__/" > .gitignore
+echo "*.pyc" >> .gitignore
+echo ".docksmith/" >> .gitignore
+echo "*.tar" >> .gitignore
